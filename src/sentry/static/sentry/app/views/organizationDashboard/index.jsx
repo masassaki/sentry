@@ -8,6 +8,7 @@ import styled from 'react-emotion';
 import SentryTypes from 'app/proptypes';
 import AsyncComponent from 'app/components/asyncComponent';
 import OrganizationState from 'app/mixins/organizationState';
+import IdBadge from 'app/components/idBadge';
 import getProjectsByTeams from 'app/utils/getProjectsByTeams';
 import {sortProjects} from 'app/utils';
 import withTeams from 'app/utils/withTeams';
@@ -107,10 +108,13 @@ class Dashboard extends AsyncComponent {
 
         {teamSlugs.map((slug, index) => {
           const showBorder = index !== teamSlugs.length - 1;
+          const foundTeam = teams.find(team => team.slug === slug);
           return (
             <TeamSection data-test-id="team" key={slug} showBorder={showBorder}>
               <TeamTitleBar justify="space-between" align="center">
-                <TeamName>{`#${slug}`}</TeamName>
+                <TeamName>
+                  {foundTeam ? <IdBadge team={foundTeam} avatarSize={24} /> : `#${slug}`}
+                </TeamName>
                 {hasTeamAccess && <TeamMembers teamId={slug} orgId={params.orgId} />}
               </TeamTitleBar>
               <ProjectCards>
