@@ -1916,6 +1916,7 @@ exports[`RuleBuilder renders with suggestions renders 1`] = `
                                           title="Jane Doe"
                                           tooltip="Jane Doe (janedoe@example.com)"
                                           type="gravatar"
+                                          uploadPath="avatar"
                                         >
                                           <Tooltip
                                             disabled={false}
